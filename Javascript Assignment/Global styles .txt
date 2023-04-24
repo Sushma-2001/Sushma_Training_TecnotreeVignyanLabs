@@ -1,0 +1,55 @@
+/* Global styles */
+
+ body {
+ margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* Styles for App component */
+
+.App {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  color: white;
+}
+
+h1 {
+  font-size: 40px;
+  margin-top: 0;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+li {
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  color: white;
+}
+
+h2 {
+  font-size: 40px;
+  margin-top: 0;
+  color: white;
+}
+
+p {
+  margin-top: 0;
+  color: white;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}

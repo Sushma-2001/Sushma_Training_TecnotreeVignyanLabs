@@ -1,0 +1,102 @@
+//This app will use the OpenWeatherMap API to fetch weather data for a specific location, and display it in a user-friendly format.
+
+//Set up the Node.js server
+//Create a new directory for your project, and run the following command in the terminal to initialize a new Node.js project:
+
+npm init
+Then, install the required packages:
+
+npm install express axios
+
+//Create a new file called server.js, and add the following code:
+
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+
+app.get('/api/weather/:location', async (req, res) => {
+  try {
+    const { location } = req.params;
+    const api_key = 'your_api_key_here';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${api_key}`;
+
+    const response = await axios.get(url);
+
+    res.send(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+//This code sets up a basic Express.js server with a single API route /api/weather/:location. 
+//When this route is accessed with a GET request, it will fetch the weather data for the specified location from the OpenWeatherMap API and return the data as a JSON response.
+//Note: Make sure to replace your_api_key_here with your actual API key from OpenWeatherMap.
+
+//Set up the React.js app
+//Create a new directory called client, and navigate to it in the terminal. Then, run the following command to create a new React.js app:
+npx create-react-app .
+
+//This will create a new React.js app with all the required dependencies and files.
+
+//Next, create a new file called Weather.js in the src directory, and add the following code:
+//React Js code
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const Weather = () => {
+  const [location, setLocation] = useState('');
+  const [weatherData, setWeatherData] = useState(null);
+
+  const handleSearch = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.get(`/api/weather/${location}`);
+      setWeatherData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Enter location"
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {weatherData && (
+        <div>
+          <h2>{weatherData.name}</h2>
+          <p>Temperature: {weatherData.main.temp} &deg;C</p>
+          <p>Weather: {weatherData.weather[0].main}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Weather;
+
+//This code creates a new React.js component called Weather, which includes a form with an input field for the user to enter a location, 
+//and a button to trigger the weather search. 
+//When the user submits the form, the handleSearch function is called, which sends a GET request to the Node.js server to fetch the weather data for the specified location. 
+//If the request is successful,
+
+
+
+
+

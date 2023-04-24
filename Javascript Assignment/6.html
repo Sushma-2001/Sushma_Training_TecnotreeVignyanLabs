@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Toggle Background Color</title>
+    <style>
+      body {
+        background-color: white;
+      }
+      .gray {
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Toggle Background Color</h1>
+    <p>Click the button to toggle the background color of the body:</p>
+    <button onclick="toggleBackground()">Toggle Background</button>
+    <script>
+      function toggleBackground() {
+        var body = document.getElementsByTagName("body")[0];
+        if (body.className === "gray") {
+          body.className = "";
+        } else {
+          body.className = "gray";
+        }
+      }
+    </script>
+  </body>
+</html>

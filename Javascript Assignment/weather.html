@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Weather App</h1>
+		<h2 id="location"></h2>
+		<div class="weather">
+			<div class="temp"><span id="temperature"></span>&deg;C</div>
+			<div class="desc"><span id="description"></span></div>
+			<div class="icon"><img src="" alt="" id="icon"></div>
+		</div>
+	</div>
+
+	<script>
+		if(navigator.geolocation){
+			navigator.geolocation.getCurrentPosition(getWeather);
+		} else {
+			alert("Geolocation is not supported by this browser.");
+		}
+
+		function getWeather(position){
+			var lat = position.coords.latitude;
+			var lon = position.coords.longitude;
+			var apikey = "YOUR_API_KEY_HERE";
+			var url = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid="+apikey+"&units=metric";
+			
+			fetch(url)
+				.then(response => response.json())
+				.then(data => {
+					document.getElementById("location").innerHTML = data.name + ", " + data.sys.country;
+					document.getElementById("temperature").innerHTML = data.main.temp.toFixed(1);
+					document.getElementById("description").innerHTML = data.weather[0].description;
+					document.getElementById("icon").src = "http://openweathermap.org/img/w/"+data.weather[0].icon+".png";
+				})
+				.catch(error => console.log(error));
+		}
+	</script>
+</body>
+</html>

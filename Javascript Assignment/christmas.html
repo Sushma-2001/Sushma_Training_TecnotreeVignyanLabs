@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>christmas</title>
+  </head>
+  <body>
+    <h4>program to calculate days left until next Christmas</h4>
+    <script>
+var today = new Date();
+var christmas = new Date(today.getFullYear(), 11, 25); 
+if (today.getMonth() == 11 && today.getDate() > 25)
+ {
+  christmas.setFullYear(christmas.getFullYear() + 1);
+}
+var oneDay = 1000 * 60 * 60 * 24; 
+var daysLeft = Math.ceil((christmas.getTime() - today.getTime()) / oneDay);
+console.log("Days left until Christmas: " + daysLeft);
+</script>
+ </body>
+</html>
