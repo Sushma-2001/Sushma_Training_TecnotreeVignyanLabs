@@ -1,0 +1,21 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>the paragraph to "The button was clicked</title>
+  </head>
+  <body>
+    <p id="output">Click the button .</p>
+    <button id="myButton">Click here</button>
+    
+    <script>
+      const button = document.getElementById("myButton");
+      const output = document.getElementById("output");
+      
+      button.addEventListener("click", function() {
+        output.innerHTML = "Hello every one";
+      });
+    </script>
+  </body>
+</html>
