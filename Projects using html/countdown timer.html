@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My JavaScript Program</title>
+  </head>
+  <body>
+    <h3>Christmas</h3>
+    <script>
+
+
+let today = new Date();
+let year = today.getFullYear();
+if (today.getMonth() === 11 && today.getDate() > 25) {
+  year++;
+}
+
+let nextChristmas = new Date(year, 11, 25);
+let timeDiff = nextChristmas.getTime() - today.getTime();
+let daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+alert('There are ' + daysDiff + ' days left until Christmas');
+
+</script>
+  </body>
+</html>
+
+
+
